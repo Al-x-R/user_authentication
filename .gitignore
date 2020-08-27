@@ -1,5 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+# all hidden files and directories
+.*
+# don't ignore .gitignore
+!.gitignore
+
 # dependencies
 /node_modules
 /.pnp
