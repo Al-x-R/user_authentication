@@ -23,7 +23,7 @@ const TopBar = () => {
                                 fontWeight: "bold",
                                 color: "black"
                             }}>
-                                Sign in
+                                Login
                             </NavLink>
                         </li>
                         <li className={styles.navItem}>
@@ -31,7 +31,7 @@ const TopBar = () => {
                                 fontWeight: "bold",
                                 color: "black"
                             }}>
-                                Register
+                                Signup
                             </NavLink>
                         </li>
                     </ul>
@@ -40,4 +40,4 @@ const TopBar = () => {
         )
 }
 
-export default TopBar;
+export default TopBar
