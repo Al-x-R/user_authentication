@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {Formik, Form, Field, ErrorMessage} from 'formik'
 import Input from '../components/Input'
 import * as Yup from 'yup'
+import styles from './LoginForm.module.scss'
 
 
 const SIGN_IN_VALIDATION_SCHEMA = Yup.object({
@@ -38,20 +39,24 @@ function LoginForm(props) {
                 validationSchema={SIGN_IN_VALIDATION_SCHEMA}
         >
             {formikProps => (
-                <Form>
+                <Form className={styles.form}>
                     {
                         fields.map(field => (
-                                <Field key={field.name} {...field}>
+                                <Field key={field.name} {...field} className={styles.field}>
                                     {fieldProps => <label>
-                                        <Input {...fieldProps} placeholder={field.placeholder}/>
-                                        <ErrorMessage name={fieldProps.field.name}/>
+                                        <Input {...fieldProps}
+                                               placeholder={field.placeholder}
+                                               className={styles.input}
+                                               />
+                                        <ErrorMessage name={fieldProps.field.name}
+                                                      className={styles.error} />
                                     </label>
                                     }
                                 </Field>
                             )
                         )
                     }
-                    <button type='submit'>Login</button>
+                    <button type='submit' className={styles.submitButton}>Login</button>
                 </Form>
             )}
         </Formik>

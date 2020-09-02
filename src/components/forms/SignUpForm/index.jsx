@@ -4,6 +4,7 @@ import {Formik, Form, Field, ErrorMessage} from 'formik'
 import Input from '../components/Input'
 import * as Yup from 'yup'
 import {ref} from "yup";
+import styles from './SignUpForm.module.scss'
 
 
 const NAME_VALIDATION_SCHEMA = Yup.string()
@@ -73,12 +74,14 @@ function SignUpForm(props) {
                 validationSchema={SIGN_UP_VALIDATION_SCHEMA}
         >
             {formikProps => (
-                <Form>
+                <Form className={styles.form}>
                     {
                         fields.map(field => (
                                 <Field key={field.name} {...field}>
                                     {fieldProps => <label>
-                                        <Input {...fieldProps} placeholder={field.placeholder}/>
+                                        <Input {...fieldProps}
+                                               placeholder={field.placeholder}
+                                               className={styles.input}/>
                                         <ErrorMessage name={fieldProps.field.name}/>
                                     </label>
                                     }
@@ -86,7 +89,19 @@ function SignUpForm(props) {
                             )
                         )
                     }
-                    <button type='submit'>Sign Up</button>
+                    <div role="group" aria-labelledby="my-radio-group">
+                        <label className={styles.radioBtn}>
+                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsBuyer" />
+                            Join As a Buyer
+                            <span className={styles.textBlock}>I am looking for a Name, Logo or Tagline for my business, brand or product.</span>
+                        </label>
+                        <label className={styles.radioBtn}>
+                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsCreative"/>
+                            Join As a Creative or Marketplace Seller
+                            <span className={styles.textBlock}>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
+                        </label>
+                    </div>
+                    <button className={styles.submit} type='submit'>Sign Up</button>
                 </Form>
             )}
         </Formik>

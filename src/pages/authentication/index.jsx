@@ -12,22 +12,25 @@ function Authentication(props) {
     return (
         <>
             <header>
-                <Link to='/' className={styles.brand}>
-                    <img src={logo} alt="Logo"/>
-                </Link>
-                {
-                    isLogin ?
-                        <Link className={styles.loginBtn} to='/register'>
-                            Signup
-                        </Link> :
-                        <Link className={styles.loginBtn} to='/login'>
-                            Login
-                        </Link>
-                }
+                <div className={styles.wrapper}>
+                    <Link to='/' className={styles.brand}>
+                        <img src={logo} alt="Logo"/>
+                    </Link>
+                    {
+                        isLogin ?
+                            <Link className={styles.loginBtn} to='/register'>
+                                Signup
+                            </Link> :
+                            <Link className={styles.loginBtn} to='/login'>
+                                Login
+                            </Link>
+                    }
+                </div>
+
             </header>
             <main>
-                <h1>{pageTitle}</h1>
-                {!isLogin && <p>We always keep your name and email address private.</p>}
+                <h1 className={styles.pageTitle}>{pageTitle}</h1>
+                {!isLogin && <p className={styles.pageDescription}>We always keep your name and email address private.</p>}
                 {isLogin ?
                     <LoginForm onSubmit={() => {
                     }}/> :
