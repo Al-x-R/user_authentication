@@ -18,7 +18,10 @@ const SIGN_UP_VALIDATION_SCHEMA = Yup.object({
     lastName: NAME_VALIDATION_SCHEMA,
     displayName: Yup.string().min(6).max(64).required(),
     email: Yup.string().email().required(),
-    password: Yup.string().matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/).required(),
+    password: Yup.string()
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/,
+            "password must be at least 8 characters long and contain at least one capital letter")
+        .required(),
     passwordConfirm: Yup.string().oneOf[ref('password')]
 })
 
@@ -78,32 +81,33 @@ function SignUpForm(props) {
                     {
                         fields.map(field => (
                                 <Field key={field.name} {...field}>
-                                    {fieldProps => <label>
+                                    {fieldProps => <label className={styles.field}>
                                         <Input {...fieldProps}
                                                placeholder={field.placeholder}
                                                className={styles.input}/>
-                                        <ErrorMessage name={fieldProps.field.name}
-                                                      className={styles.error}/>
+                                        <ErrorMessage name={fieldProps.field.name}>
+                                            {(msg) => <div className={styles.error}>{msg}</div>}
+                                        </ErrorMessage>
                                     </label>
                                     }
                                 </Field>
                             )
                         )
                     }
-                        <div className={styles.field_container}>
-                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsBuyer"/>
-                            <label className={styles.label}>
-                                Join As a Buyer
-                                <span>I am looking for a Name, Logo or Tagline for my business, brand or product.</span>
-                            </label>
-                        </div>
-                        <div className={styles.field_container}>
-                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsCreative"/>
-                            <label className={styles.label}>
-                                Join As a Creative or Marketplace Seller
-                                <span>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
-                            </label>
-                        </div>
+                    <div className={styles.field_container}>
+                        <Field className={styles.radio} type="radio" name="picked" value="JoinAsBuyer"/>
+                        <label className={styles.label}>
+                            Join As a Buyer
+                            <span>I am looking for a Name, Logo or Tagline for my business, brand or product.</span>
+                        </label>
+                    </div>
+                    <div className={styles.field_container}>
+                        <Field className={styles.radio} type="radio" name="picked" value="JoinAsCreative"/>
+                        <label className={styles.label}>
+                            Join As a Creative or Marketplace Seller
+                            <span>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
+                        </label>
+                    </div>
                     <button className={styles.submit} type='submit'>Sign Up</button>
                 </Form>
             )}

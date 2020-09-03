@@ -8,7 +8,10 @@ import styles from './LoginForm.module.scss'
 
 const SIGN_IN_VALIDATION_SCHEMA = Yup.object({
     email: Yup.string().email().required(),
-    password: Yup.string().matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/).required(),
+    password: Yup.string()
+        .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/, "\n" +
+            "password must be at least 8 characters long")
+        .required(),
 })
 
 function LoginForm(props) {
@@ -42,14 +45,15 @@ function LoginForm(props) {
                 <Form className={styles.form}>
                     {
                         fields.map(field => (
-                                <Field key={field.name} {...field} className={styles.field}>
-                                    {fieldProps => <label>
+                                <Field key={field.name} {...field} >
+                                    {fieldProps => <label className={styles.field}>
                                         <Input {...fieldProps}
                                                placeholder={field.placeholder}
                                                className={styles.input}
-                                               />
-                                        <ErrorMessage name={fieldProps.field.name}
-                                                      className={styles.error} />
+                                        />
+                                        <ErrorMessage name={fieldProps.field.name}>
+                                            {(msg) => <div className={styles.error}>{msg}</div>}
+                                        </ErrorMessage>
                                     </label>
                                     }
                                 </Field>
