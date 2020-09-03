@@ -82,25 +82,28 @@ function SignUpForm(props) {
                                         <Input {...fieldProps}
                                                placeholder={field.placeholder}
                                                className={styles.input}/>
-                                        <ErrorMessage name={fieldProps.field.name}/>
+                                        <ErrorMessage name={fieldProps.field.name}
+                                                      className={styles.error}/>
                                     </label>
                                     }
                                 </Field>
                             )
                         )
                     }
-                    <div role="group" aria-labelledby="my-radio-group">
-                        <label className={styles.radioBtn}>
-                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsBuyer" />
-                            Join As a Buyer
-                            <span className={styles.textBlock}>I am looking for a Name, Logo or Tagline for my business, brand or product.</span>
-                        </label>
-                        <label className={styles.radioBtn}>
+                        <div className={styles.field_container}>
+                            <Field className={styles.radio} type="radio" name="picked" value="JoinAsBuyer"/>
+                            <label className={styles.label}>
+                                Join As a Buyer
+                                <span>I am looking for a Name, Logo or Tagline for my business, brand or product.</span>
+                            </label>
+                        </div>
+                        <div className={styles.field_container}>
                             <Field className={styles.radio} type="radio" name="picked" value="JoinAsCreative"/>
-                            Join As a Creative or Marketplace Seller
-                            <span className={styles.textBlock}>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
-                        </label>
-                    </div>
+                            <label className={styles.label}>
+                                Join As a Creative or Marketplace Seller
+                                <span>I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.</span>
+                            </label>
+                        </div>
                     <button className={styles.submit} type='submit'>Sign Up</button>
                 </Form>
             )}
