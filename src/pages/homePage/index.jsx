@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './homePage.module.scss'
 import {Link, NavLink} from 'react-router-dom'
-import logo from './logo-color.jpg'
+import logo from './logo-color.png'
 
 const HomePage = () => {
     return (
