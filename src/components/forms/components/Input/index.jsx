@@ -9,6 +9,7 @@ function Input(props) {
         meta: {error, touched},
         ...rest
     } = props
+
     const isError = error && touched
 
     const inputClassName = classNames(styles.input, {
@@ -18,12 +19,13 @@ function Input(props) {
 
 
     return (
-        <input className={inputClassName} {...field} {...rest}/>
+        <input className={`${inputClassName}`} {...field} {...rest}/>
     )
 }
 
 Input.propTypes = {
-    type: PropTypes.oneOf(['text', 'email', 'url', 'password', 'textarea'])
+    type: PropTypes.oneOf(['text', 'email', 'url', 'password', 'textarea']),
+    className: PropTypes.string,
 }
 
 Input.defaultProps = {
