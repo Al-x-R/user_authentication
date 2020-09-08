@@ -10,13 +10,13 @@ import styles from './SignUpForm.module.scss'
 const NAME_VALIDATION_SCHEMA = Yup.string()
     .min(2)
     .max(64)
-    .matches(/^[[a-z]*$/i)
+    .matches(/^[[a-z]*$/i, 'this field must contain only letters')
     .required()
 
 const SIGN_UP_VALIDATION_SCHEMA = Yup.object({
     firstName: NAME_VALIDATION_SCHEMA,
     lastName: NAME_VALIDATION_SCHEMA,
-    displayName: Yup.string().min(6).max(64).required(),
+    displayName: Yup.string().min(6).max(64).required('name must be at least 6 characters'),
     email: Yup.string().email().required(),
     password: Yup.string()
         .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/,
@@ -82,9 +82,9 @@ function SignUpForm(props) {
                         fields.map(field => (
                                 <Field key={field.name} {...field}>
                                     {fieldProps => <label className={styles.field}>
-                                        <Input {...fieldProps}
-                                               placeholder={field.placeholder}
-                                               className={styles.input}/>
+                                        <Input {...fieldProps} {...field}
+                                               className={styles.input}
+                                        />
                                         <ErrorMessage name={fieldProps.field.name}>
                                             {(msg) => <div className={styles.error}>{msg}</div>}
                                         </ErrorMessage>

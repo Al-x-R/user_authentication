@@ -5,12 +5,11 @@ import Input from '../components/Input'
 import * as Yup from 'yup'
 import styles from './LoginForm.module.scss'
 
-
 const SIGN_IN_VALIDATION_SCHEMA = Yup.object({
     email: Yup.string().email().required(),
     password: Yup.string()
         .matches(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,40}$/, "\n" +
-            "password must be at least 8 characters long")
+            "password must be at least 8 characters long and contain at least one capital letter")
         .required(),
 })
 
@@ -36,6 +35,7 @@ function LoginForm(props) {
         (total[field.name] = field.initialValue, total), {}
     )
 
+
     return (
         <Formik onSubmit={onSubmit}
                 initialValues={initialValues}
@@ -48,7 +48,7 @@ function LoginForm(props) {
                                 <Field key={field.name} {...field} >
                                     {fieldProps => <label className={styles.field}>
                                         <Input {...fieldProps}
-                                               placeholder={field.placeholder}
+                                               {...field}
                                                className={styles.input}
                                         />
                                         <ErrorMessage name={fieldProps.field.name}>

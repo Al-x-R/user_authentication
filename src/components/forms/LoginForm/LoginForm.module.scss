@@ -28,9 +28,9 @@
 .error {
   position: absolute;
   width: inherit;
-  bottom: 10px;
+  bottom: 15px;
   padding: 5px 25px;
-  font-size: 15px;
+  font-size: 13px;
   color: #ef2626;
 }
 
@@ -45,4 +45,12 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+}
+
+.inputError {
+  border: 3px solid red;
+}
+
+.inputValid {
+  border: 3px solid green;
 }

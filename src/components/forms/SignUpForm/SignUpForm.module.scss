@@ -6,25 +6,26 @@
   width: 580px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   margin: auto;
 }
 
 .field {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   position: relative;
 }
 
 .input {
-  min-width: 265px;
+  width: 265px;
   height: auto;
-  display: inline-block;
   margin: 0 12px 15px;
   padding: 21px 23px;
   border: 2px solid white;
   border-radius: 4px;
   font-size: 16px;
   text-transform: capitalize;
+  position: relative;
 }
 
 .label {
@@ -64,12 +65,20 @@
 
 .error {
   position: absolute;
+  display: block;
   width: inherit;
   bottom: 15px;
   z-index: 10;
   padding: 5px 25px;
-  margin-left: 12px;
-  font-size: 15px;
+  margin: 0 0 -30px 12px;
+  font-size: 13px;
   text-align: left;
-  color: #ef2626;
+  color: black;
+  border: 1px solid red;
+  border-radius: 6px;
+  background-color: rgba(236, 72, 72, 0.5);
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
